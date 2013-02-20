@@ -22,16 +22,16 @@ class Game
     getMaxY: -> Math.max do @getYVals...
     getMinX: -> Math.min do @getXVals...
     getMinY: -> Math.min do @getYVals...
+    isN: (origin, cell) ->
+        origin.x - 1 <= cell.x <= origin.x + 1 and cell.y is origin.y - 1
+    isSide: (origin, cell) ->
+        (cell.x is origin.x - 1 or cell.x is origin.x + 1) and cell.y is origin.y
+    isS: (origin, cell) ->
+        origin.x - 1 <= cell.x <= origin.x + 1 and cell.y is origin.y + 1
+    neighbourFilter: (c, cell) -> @isN(cell, c) or @isSide(cell, c) or @isS(cell, c)
              
-    getNeighbours: (cell) ->
-        isN = (origin, cell) ->
-            origin.x - 1 <= cell.x <= origin.x + 1 and cell.y is origin.y - 1
-        isSide = (origin, cell) ->
-            (cell.x is origin.x - 1 or cell.x is origin.x + 1) and cell.y is origin.y
-        isS = (origin, cell) ->
-            origin.x - 1 <= cell.x <= origin.x + 1 and cell.y is origin.y + 1
-        neighbourFilter = (c) -> isN(cell, c) or isSide(cell, c) or isS(cell, c)
-        @currentGeneration().filter neighbourFilter
+    getNeighbours: (cell) ->        
+        @currentGeneration().filter (c) => @neighbourFilter c, cell
 
 root = exports ? window
 root.Cell = Cell
