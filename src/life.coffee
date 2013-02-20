@@ -16,7 +16,7 @@ class Game
             @gen2 = []
 
     setGeneration: (cells) ->
-        if @generation % 2 is 0
+        if @generation % 2 is 1
             @gen1 = cells
         else
             @gen2 = cells

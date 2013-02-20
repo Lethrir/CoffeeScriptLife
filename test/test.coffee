@@ -15,16 +15,16 @@ describe 'Cell', ->
 
 describe 'Game', ->
     # setup some cells and a game to use throughout the tests
-    cell1 = new Cell 20,3
-    cell2 = new Cell 1,60
-    cell3 = new Cell 8,8
-    cell4 = new Cell 8,9
-    cell5 = new Cell 7,7
-    cell6 = new Cell 10,10
-    cell7 = new Cell 10,11
-    cell8 = new Cell 11,11
-    cell9 = new Cell 11,10
-    cell10 = new Cell 10,9
+    cell1 = new Cell 20,3   # dies
+    cell2 = new Cell 1,60   # dies
+    cell3 = new Cell 8,8    # lives
+    cell4 = new Cell 8,9    # dies
+    cell5 = new Cell 7,7    # dies
+    cell6 = new Cell 10,10  # dies
+    cell7 = new Cell 10,11  # lives
+    cell8 = new Cell 11,11  # lives
+    cell9 = new Cell 11,10  # lives
+    cell10 = new Cell 10,9  # lives
     game = new Game [cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8, cell9, cell10]
     it 'should exist', ->
         if not game?
@@ -68,8 +68,8 @@ describe 'Game', ->
     it 'should process generation', ->
         assert.equal 10, game.gen1.length
         res = game.doGeneration()
-        assert.equal 0, res.length
-        #assert.equal game.generation, 1
-        assert.equal [1], game.gen2
+        assert.equal [], res
+        assert.equal 7, game.gen2.length
+        assert.equal game.generation, 1
         assert.equal 10, game.gen1.length
         assert.equal 8, game.gen2.length
