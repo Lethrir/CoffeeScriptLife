@@ -51,11 +51,11 @@ class Game
         @currentGeneration().filter (c) => @neighbourFilter c, cell
 
     cellBorn: (cell) ->
-        @getNeighbours(cell) is 3
+        @getNeighbours(cell).length is 3
     cellOverpopulated: (cell) ->
-        @getNeighbours cell > 3
+        @getNeighbours(cell).length > 3
     cellUnderpopulated: (cell) ->
-        @getNeighbours cell < 2
+        @getNeighbours(cell).length < 2
     cellLives: (cell) ->
         2 <= @getNeighbours(cell) <= 3 and (@currentGeneration().filter (c) -> c.x is cell.x and c.y is cell.y).length is 1
 
