@@ -134,9 +134,9 @@ glider = [cell21, cell32, cell33, cell23, cell13]
 infiniteGrowth = [cell16, cell36, cell35, cell54, cell53, cell52, cell73, cell72, cell71, cell82]
 dieHard = [cell12, cell22, cell23, cell71, cell63, cell73, cell83]
 
-game = new Game dieHard
+game = new Game infiniteGrowth
 outputLife(game)
-for i in [1..130]
+for i in [1..1000]
     game.doGeneration()
     outputLife(game)
 console.log 'Done!'
